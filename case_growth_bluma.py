@@ -121,44 +121,187 @@ with tab1:
     st.markdown("""
     <div class="challenge-box">
         🎯 MISSÃO PRINCIPAL<br>
-        Desenvolver estratégia para aumentar LTV/CARC em 30%<br>
-        (de 2.33x para 3.03x) em 3 meses
+        Identificar causas da queda do LTV/CAC e propor melhorias baseadas em dados<br>
+        (Meta: aumentar de 2.33x para 3.03x em 3 meses)
     </div>
     """, unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("#### 🔍 Contexto do Desafio")
+        st.markdown("#### 🔍 Contexto do Problema")
         st.markdown("""
-        - **Prazo:** 3 meses para implementação completa
-        - **Meta:** LTV/CARC de 3.03x (aumento de 30%)
-        - **Restrição:** Budget de mídia paga não pode aumentar mais de 10%
-        - **Foco:** Eficiência e otimização, não crescimento de volume
+        - **CAC aumentou 35%** nos últimos 3 meses (R$67 → R$90)
+        - **Taxa de ativação caiu 4pp** (12% → 8%)
+        - **LTV/CAC deteriorou** de 3.0x para 2.33x
+        - **Budget limitado:** +10% máximo de aumento
+        """)
+        
+        st.markdown("#### 📊 Abordagem Analítica")
+        st.markdown("""
+        **1. Diagnóstico dos Dados**
+        - Explore tendências temporais
+        - Compare performance entre canais
+        - Identifique padrões de comportamento
+        
+        **2. Análise de Causa-Raiz**
+        - Por que o CAC aumentou?
+        - O que impacta a ativação de usuários?
+        - Quais canais estão sub/sobre-performando?
+        
+        **3. Quantificação de Oportunidades**
+        - Calcule potencial de melhoria por canal
+        - Estime impacto de otimizações
+        - Priorize ações por ROI esperado
         """)
     
     with col2:
-        st.markdown("#### ✅ O que Esperamos")
+        st.markdown("#### ✅ O que Avaliaremos")
         st.markdown("""
-        **Profundidade Analítica:**
-        - Análise dos dados
-        - Insights baseados em evidências
+        **🔍 Capacidade Analítica:**
+        - Qualidade da exploração de dados
+        - Uso correto de métricas e KPIs
+        - Identificação de insights relevantes
+        - Interpretação de correlações e padrões
         
-        **Pensamento Estratégico:**
-        - Visão holística do problema
-        - Priorização por impacto
-        - Consideração de trade-offs
+        **🧠 Pensamento Crítico:**
+        - Questionamento das hipóteses
+        - Validação de conclusões com dados
+        - Consideração de fatores externos
+        - Reconhecimento de limitações dos dados
         
-        **Foco em Métricas de Negócio:**
-        - Conexão clara entre ações e resultados
-        - KPIs relevantes para o objetivo
+        **📈 Foco em Resultados:**
+        - Conexão clara entre análise e negócio
+        - Quantificação de impactos
+        - Recomendações priorizadas
+        - Métricas de acompanhamento
         
-        **Recomendações Acionáveis:**
-        - Soluções práticas e implementáveis
-        - Timeline realista
-        - Recursos necessários
-
+        **🛠️ Execução Técnica:**
+        - Consultas SQL eficientes
+        - Visualizações claras e objetivas
+        - Documentação do processo analítico
         """)
+    
+    st.markdown("---")
+    
+    # Seção de dicas práticas
+    st.markdown("#### 💡 Dicas para o Sucesso")
+    
+    tips_col1, tips_col2, tips_col3 = st.columns(3)
+    
+    with tips_col1:
+        st.markdown("**🎯 Comece pelo Básico**")
+        st.markdown("""
+        - Valide a qualidade dos dados
+        - Entenda as definições das métricas
+        - Calcule KPIs fundamentais
+        - Identifique períodos e segmentos relevantes
+        """)
+    
+    with tips_col2:
+        st.markdown("**🔎 Faça Perguntas Certas**")
+        st.markdown("""
+        - Quando começou a deterioração?
+        - Quais canais/campanhas são afetados?
+        - Há sazonalidade nos dados?
+        - O que mudou no comportamento dos usuários?
+        """)
+    
+    with tips_col3:
+        st.markdown("**📊 Seja Orientado por Dados**")
+        st.markdown("""
+        - Use estatísticas descritivas
+        - Compare períodos e segmentos
+        - Valide hipóteses com análises
+        - Quantifique todas as oportunidades
+        """)
+    
+    st.markdown("---")
+    
+    # Checklist de análise
+    st.markdown("#### ✅ Checklist de Análise")
+    
+    checklist_col1, checklist_col2 = st.columns(2)
+    
+    with checklist_col1:
+        st.markdown("**📋 Análise Exploratória:**")
+        st.markdown("""
+        ☐ Volume e qualidade dos dados por tabela  
+        ☐ Período de análise e possível sazonalidade  
+        ☐ Distribuição de usuários por canal/demografia  
+        ☐ Taxa de ativação geral e por segmento  
+        ☐ Ticket médio e frequência de compra  
+        ☐ Performance de campanhas ao longo do tempo  
+        """)
+    
+    with checklist_col2:
+        st.markdown("**🎯 Análise de Performance:**")
+        st.markdown("""
+        ☐ CAC por canal/campanha/período  
+        ☐ LTV por cohort e janela temporal  
+        ☐ LTV/CAC atual vs histórico  
+        ☐ Funil de conversão e pontos de atrito  
+        ☐ Performance de criativos por tipo  
+        ☐ Oportunidades de otimização identificadas  
+        """)
+    
+    st.markdown("---")
+    
+    # Objetivos específicos
+    st.markdown("#### 🎯 Questões-Chave para Responder")
+    
+    questions_col1, questions_col2 = st.columns(2)
+    
+    with questions_col1:
+        st.markdown("**❓ Diagnóstico:**")
+        st.markdown("""
+        1. **Qual a principal causa do aumento do CAC?**
+           - Aumento de CPM/CPC?
+           - Queda na taxa de conversão?
+           - Mix de canais menos eficiente?
+        
+        2. **Por que a taxa de ativação caiu?**
+           - Qualidade dos leads por canal?
+           - Mudanças no onboarding?
+           - Sazonalidade ou fatores externos?
+        
+        3. **Quais canais/campanhas têm melhor ROI?**
+           - Performance por plataforma
+           - Tipos de campanha mais eficientes
+           - Segmentos de usuários mais valiosos
+        """)
+    
+    with questions_col2:
+        st.markdown("**💡 Oportunidades:**")
+        st.markdown("""
+        1. **Onde realocar budget para melhor ROI?**
+           - Canais com melhor LTV/CAC
+           - Campanhas com maior potencial
+           - Segmentos sub-explorados
+        
+        2. **Como melhorar a eficiência das campanhas?**
+           - Otimização de criativos
+           - Ajustes de targeting
+           - Melhorias no funil de conversão
+        
+        3. **Qual o potencial de melhoria?**
+           - Impacto quantificado por iniciativa
+           - Cronograma de implementação
+           - Métricas de acompanhamento
+        """)
+    
+    st.markdown("---")
+    
+    # Call to action final
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #FF69B4, #FF1493); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0;">
+        <h4>📈 Lembre-se: Dados Contam uma História</h4>
+        <p>Sua missão é ser o detetive que descobre <strong>por que</strong> as métricas pioraram e <strong>como</strong> melhorar usando evidências concretas dos dados.</p>
+        <p style="margin-top: 1rem;">
+            <strong>Boa sorte na análise! 🕵️‍♀️</strong>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 with tab2:
     col1, col2 = st.columns([2, 1])
