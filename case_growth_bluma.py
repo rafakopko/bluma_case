@@ -108,13 +108,59 @@ Password: bluma123
 
 # Conteúdo principal em tabs
 tab1, tab2, tab3, tab4 = st.tabs([
+    "🎯 Orientações",
     "📋 Contexto do Negócio", 
     "🗄️ Estrutura de Dados", 
-    "📊 Queries de Exemplo", 
-    "🎯 Orientações"
+    "📊 Queries de Exemplo"
 ])
 
 with tab1:
+    st.markdown("### 🎯 Orientações para o Case")
+    
+    # Box de destaque com a missão
+    st.markdown("""
+    <div class="challenge-box">
+        🎯 MISSÃO PRINCIPAL<br>
+        Desenvolver estratégia para aumentar LTV/CARC em 30%<br>
+        (de 2.33x para 3.03x) em 3 meses
+    </div>
+    """, unsafe_allow_html=True)
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("#### 🔍 Contexto do Desafio")
+        st.markdown("""
+        - **Prazo:** 3 meses para implementação completa
+        - **Meta:** LTV/CARC de 3.03x (aumento de 30%)
+        - **Restrição:** Budget de mídia paga não pode aumentar mais de 10%
+        - **Foco:** Eficiência e otimização, não crescimento de volume
+        """)
+    
+    with col2:
+        st.markdown("#### ✅ O que Esperamos")
+        st.markdown("""
+        **Profundidade Analítica:**
+        - Análise dos dados
+        - Insights baseados em evidências
+        
+        **Pensamento Estratégico:**
+        - Visão holística do problema
+        - Priorização por impacto
+        - Consideração de trade-offs
+        
+        **Foco em Métricas de Negócio:**
+        - Conexão clara entre ações e resultados
+        - KPIs relevantes para o objetivo
+        
+        **Recomendações Acionáveis:**
+        - Soluções práticas e implementáveis
+        - Timeline realista
+        - Recursos necessários
+
+        """)
+
+with tab2:
     col1, col2 = st.columns([2, 1])
     
     with col1:
@@ -218,136 +264,255 @@ with tab1:
         st.metric("Retenção M1", "22%", delta="-3pp", delta_color="inverse")
         st.markdown('</div>', unsafe_allow_html=True)
 
-with tab2:
-    st.markdown("### 🗄️ Estrutura do Banco de Dados")
-    
-    # Diagrama ER usando Mermaid
-    st.markdown("#### Relacionamentos entre Tabelas")
-    mermaid_diagram = """
-    graph TD
-        A[users<br/>50k registros] --> B[orders<br/>150k registros]
-        A --> C[user_events<br/>300k registros]
-        A --> D[user_cohorts<br/>4k registros]
-        E[paid_media_campaigns<br/>120 registros] --> F[daily_performance<br/>3.6k registros]
-        E --> G[ad_creatives<br/>600 registros]
-        G --> H[creative_performance<br/>18k registros]
-        I[budget_allocation<br/>60 registros] --> E
-        
-        style A fill:#FFB6C1
-        style E fill:#FF69B4
-        style B fill:#FFF0F5
-        style F fill:#FFF0F5
-    """
-    
-    st.markdown(f"```mermaid\n{mermaid_diagram}\n```")
-    
-    st.markdown("#### Descrição Detalhada das Tabelas")
-    
-    # Organizar em 3 colunas
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        with st.expander("👥 users (50.000 registros)"):
-            st.markdown("""
-            **Dados dos usuários cadastrados**
-            - user_id (PK)
-            - created_at
-            - acquisition_channel
-            - acquisition_campaign
-            - first_order_date
-            - city, state
-            - age_group, gender
-            """)
-        
-        with st.expander("🛒 orders (~150.000 registros)"):
-            st.markdown("""
-            **Pedidos realizados pelos usuários**
-            - order_id (PK)
-            - user_id (FK)
-            - order_date
-            - order_value
-            - service_type
-            - status
-            - payment_method
-            - discount_amount
-            """)
-        
-        with st.expander("📱 user_events (~300.000 registros)"):
-            st.markdown("""
-            **Eventos de interação dos usuários**
-            - event_id (PK)
-            - user_id (FK)
-            - event_timestamp
-            - event_type
-            - platform
-            - session_id
-            """)
-    
-    with col2:
-        with st.expander("📢 paid_media_campaigns (120 registros)"):
-            st.markdown("""
-            **Campanhas de mídia paga**
-            - campaign_id (PK)
-            - platform
-            - campaign_name
-            - campaign_type
-            - start_date, end_date
-            - daily_budget
-            - objective
-            """)
-        
-        with st.expander("📊 daily_performance (~3.600 registros)"):
-            st.markdown("""
-            **Performance diária das campanhas**
-            - date, campaign_id (PK)
-            - impressions, clicks
-            - spend, conversions
-            - conversion_value
-            - new_users
-            - cpm, cpc, ctr
-            """)
-        
-        with st.expander("🎨 ad_creatives (~600 registros)"):
-            st.markdown("""
-            **Criativos das campanhas**
-            - creative_id (PK)
-            - campaign_id (FK)
-            - creative_type
-            - creative_name
-            - launched_date
-            - status
-            """)
-    
-    with col3:
-        with st.expander("📈 creative_performance (~18.000 registros)"):
-            st.markdown("""
-            **Performance dos criativos**
-            - date, creative_id (PK)
-            - impressions, clicks
-            - spend, conversions
-            - engagement_rate
-            """)
-        
-        with st.expander("👥 user_cohorts (~4.000 registros)"):
-            st.markdown("""
-            **Análise de cohorts de usuários**
-            - cohort_month, user_id (PK)
-            - m0_revenue, m1_revenue
-            - m2_revenue, m3_revenue
-            - m0_orders, m1_orders
-            - m2_orders, m3_orders
-            """)
-        
-        with st.expander("💰 budget_allocation (~60 registros)"):
-            st.markdown("""
-            **Alocação mensal de budget**
-            - month, channel (PK)
-            - planned_budget
-            - actual_spend
-            - target_cac, actual_cac
-            """)
-
 with tab3:
+    st.markdown("### 🗄️ Estrutura do Banco de Dados")
+        
+    # Seção de conexão simplificada
+    st.markdown("#### � Como Conectar ao Banco")
+    
+    st.markdown("**📋 Informações de Conexão:**")
+    
+    conn_info_col1, conn_info_col2 = st.columns([1, 1])
+    
+    with conn_info_col1:
+        st.info("""
+        **🏠 Servidor:** 95.111.240.159  
+        **🗄️ Banco:** bluma_case  
+        **👤 Usuário:** candidato  
+        **🔑 Senha:** bluma123  
+        **🚪 Porta:** 3306
+        """)
+    
+    with conn_info_col2:
+        st.markdown("**� Como usar os dados:**")
+        st.markdown("""
+        1. **Conecte no banco** usando as credenciais da sidebar
+        2. **Explore as tabelas** com SELECT simples
+        3. **Analise os relacionamentos** entre usuários e pedidos
+        4. **Calcule métricas** como CAC e LTV
+        """)
+    
+    st.markdown("---")
+    
+    # Fluxo visual dos dados
+    st.markdown("#### � Como os Dados se Relacionam")
+    
+    flow_col1, flow_col2, flow_col3 = st.columns(3)
+    
+    with flow_col1:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #FF69B4, #FF1493); color: white; padding: 1.5rem; border-radius: 15px; text-align: center; margin: 1rem 0;">
+            <h3>📢 1. CAMPANHAS</h3>
+            <p><strong>paid_media_campaigns</strong></p>
+            <p>120 campanhas ativas<br>Meta, Google, TikTok</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("**O que contém:**")
+        st.markdown("""
+        - Nome das campanhas
+        - Plataforma (Meta/Google/TikTok)  
+        - Budget diário
+        - Período de atividade
+        - Tipo de campanha
+        """)
+    
+    with flow_col2:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #FFB6C1, #FF69B4); color: white; padding: 1.5rem; border-radius: 15px; text-align: center; margin: 1rem 0;">
+            <h3>👥 2. USUÁRIOS</h3>
+            <p><strong>users</strong></p>
+            <p>50.000 usuários<br>4.955 ativados (9.9%)</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("**O que contém:**")
+        st.markdown("""
+        - Canal de aquisição
+        - Data de cadastro
+        - Primeira compra
+        - Cidade e idade
+        - Demografia
+        """)
+    
+    with flow_col3:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #FFF0F5, #FFB6C1); color: #333; padding: 1.5rem; border-radius: 15px; text-align: center; margin: 1rem 0;">
+            <h3>🛒 3. PEDIDOS</h3>
+            <p><strong>orders</strong></p>
+            <p>19.683 pedidos<br>R$ 1.4M em GMV</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("**O que contém:**")
+        st.markdown("""
+        - Valor do pedido
+        - Tipo de serviço
+        - Data da compra
+        - Status (completo/cancelado)
+        - Método de pagamento
+        """)
+    
+    # Setas conectoras
+    st.markdown("""
+    <div style="text-align: center; margin: 1rem 0;">
+        <span style="font-size: 2rem;">📢 → 👥 → 🛒</span><br>
+        <strong>Campanhas atraem Usuários que fazem Pedidos</strong>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Performance tracking
+    st.markdown("#### � Acompanhamento de Performance")
+    
+    perf_col1, perf_col2 = st.columns(2)
+    
+    with perf_col1:
+        st.markdown("""
+        <div style="background-color: #FFF0F5; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #FF1493;">
+            <h4>📈 Performance Diária</h4>
+            <p><strong>daily_performance</strong> - 5.837 registros</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("**📊 Métricas por dia:**")
+        st.markdown("""
+        - **Spend:** Quanto gastamos
+        - **Impressões:** Quantas pessoas viram os anúncios  
+        - **Clicks:** Quantas pessoas clicaram
+        - **Conversões:** Quantas pessoas compraram
+        - **New Users:** Novos usuários adquiridos
+        """)
+        
+        st.markdown("**💡 Para que serve:**")
+        st.markdown("""
+        - Calcular **CAC** (custo por usuário)
+        - Ver **tendências** ao longo do tempo
+        - Identificar **campanhas** com melhor performance
+        """)
+    
+    with perf_col2:
+        st.markdown("""
+        <div style="background-color: #FFF0F5; padding: 1.5rem; border-radius: 10px; border-left: 5px solid #FF1493;">
+            <h4>🎨 Criativos</h4>
+            <p><strong>ad_creatives</strong> - 755 criativos</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("**🎭 Tipos de criativo:**")
+        st.markdown("""
+        - **UGC:** Conteúdo de usuários
+        - **Carousel:** Várias imagens
+        - **Video:** Vídeos promocionais
+        - **Static:** Imagem única
+        - **ASMR:** Conteúdo relaxante
+        """)
+        
+        st.markdown("**💡 Para que serve:**")
+        st.markdown("""
+        - Ver quais **formatos** funcionam melhor
+        - Identificar **fadiga criativa**
+        - Otimizar **mix de criativos**
+        """)
+    
+    st.markdown("---")
+    
+    # Tabelas auxiliares
+    st.markdown("#### 📋 Tabelas Auxiliares")
+    
+    aux_col1, aux_col2 = st.columns(2)
+    
+    with aux_col1:
+        with st.expander("📱 user_events - Eventos de Interação"):
+            st.markdown("""
+            **O que é:** Registro de ações dos usuários no app/site
+            
+            **Principais eventos:**
+            - app_open (abrir app)
+            - view_service (ver serviço)
+            - add_to_cart (adicionar ao carrinho)
+            - search (buscar)
+            
+            **Para que serve:**
+            - Analisar funil de conversão
+            - Identificar pontos de abandono
+            - Otimizar experiência do usuário
+            
+            **💡 Dica:** Útil para entender comportamento antes da compra
+            """)
+        
+        with st.expander("� budget_allocation - Planejamento"):
+            st.markdown("""
+            **O que é:** Budget planejado vs real por mês e canal
+            
+            **Informações:**
+            - Budget planejado mensal
+            - Gasto real
+            - CAC objetivo vs real
+            
+            **Para que serve:**
+            - Controle orçamentário
+            - Identificar desvios
+            - Planejar próximos meses
+            
+            **💡 Dica:** Compare planned vs actual para ver eficiência
+            """)
+    
+    with aux_col2:
+        with st.expander("👥 user_cohorts - Análise de Retenção"):
+            st.markdown("""
+            **O que é:** Receita dos usuários agrupados por mês de aquisição
+            
+            **Dados por usuário:**
+            - M0: Receita no mês da aquisição
+            - M1: Receita no mês seguinte  
+            - M2: Receita no 2º mês
+            - M3: Receita no 3º mês
+            
+            **Para que serve:**
+            - Calcular LTV por período
+            - Analisar retenção
+            - Projetar receita futura
+            
+            **💡 Dica:** Dados já calculados, pronto para usar!
+            """)
+        
+        with st.expander("� creative_performance - Performance de Criativos"):
+            st.markdown("""
+            **O que é:** Performance detalhada de cada criativo
+            
+            **Métricas por criativo:**
+            - Impressões e clicks
+            - Spend alocado
+            - Conversões atribuídas
+            - Taxa de engajamento
+            
+            **Para que serve:**
+            - Identificar melhores criativos
+            - Analisar fadiga criativa
+            - Otimizar budget entre criativos
+            
+            **💡 Dica:** Compare performance por tipo de criativo
+            """)
+    
+        
+    st.markdown("---")
+    
+    # Call to action final
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #FF69B4, #FF1493); color: white; padding: 2rem; border-radius: 15px; text-align: center; margin: 2rem 0;">
+        <h3>🎯 Objetivo do Case</h3>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">
+            <strong>Aumentar LTV/CAC de 2.33x para 3.03x (+30%) em 3 meses</strong>
+        </p>
+        <p>Use estes dados para identificar oportunidades e propor estratégias de otimização!</p>
+        <p style="margin-top: 1rem;">
+            🔗 <strong>Credenciais na sidebar</strong> | 📊 <strong>Queries de exemplo na próxima aba</strong>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+with tab4:
     st.markdown("### 📊 Queries de Exemplo")
     
     # Sub-tabs para categorias
@@ -442,81 +607,6 @@ GROUP BY cohort_month
 ORDER BY cohort_month DESC
 LIMIT 12;
         """, language="sql")
-
-with tab4:
-    st.markdown("### 🎯 Orientações para o Case")
-    
-    # Box de destaque com a missão
-    st.markdown("""
-    <div class="challenge-box">
-        🎯 MISSÃO PRINCIPAL<br>
-        Desenvolver estratégia para aumentar LTV/CARC em 30%<br>
-        (de 2.33x para 3.03x) em 3 meses
-    </div>
-    """, unsafe_allow_html=True)
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("#### 🔍 Contexto do Desafio")
-        st.markdown("""
-        - **Prazo:** 3 meses para implementação completa
-        - **Meta:** LTV/CARC de 3.03x (aumento de 30%)
-        - **Restrição:** Budget de mídia paga não pode aumentar mais de 10%
-        - **Foco:** Eficiência e otimização, não crescimento de volume
-        """)
-        
-        st.markdown("#### 📋 Abordagem Sugerida")
-        st.markdown("""
-        1. **Explorar e entender os dados**
-           - Validar qualidade dos dados
-           - Identificar padrões e tendências
-        
-        2. **Identificar problemas e oportunidades**
-           - Diagnosticar causas da queda do LTV/CARC
-           - Mapear pontos de melhoria
-        
-        3. **Desenvolver hipóteses testáveis**
-           - Formular hipóteses baseadas em dados
-           - Priorizar por impacto potencial
-        
-        4. **Propor soluções baseadas em dados**
-           - Estratégias acionáveis e mensuráveis
-           - Roadmap de implementação
-        
-        5. **Quantificar impacto esperado**
-           - Projeções de resultados
-           - Métricas de acompanhamento
-        """)
-    
-    with col2:
-        st.markdown("#### ✅ O que Esperamos")
-        st.markdown("""
-        **Profundidade Analítica:**
-        - Análise exploratória completa
-        - Uso adequado de técnicas estatísticas
-        - Insights baseados em evidências
-        
-        **Pensamento Estratégico:**
-        - Visão holística do problema
-        - Priorização por impacto
-        - Consideração de trade-offs
-        
-        **Foco em Métricas de Negócio:**
-        - Conexão clara entre ações e resultados
-        - KPIs relevantes para o objetivo
-        - ROI das iniciativas propostas
-        
-        **Recomendações Acionáveis:**
-        - Soluções práticas e implementáveis
-        - Timeline realista
-        - Recursos necessários
-        
-        **Clareza na Comunicação:**
-        - Narrativa lógica e estruturada
-        - Visualizações efetivas
-        - Conclusões objetivas
-        """)
 
 # Footer
 st.markdown("---")
