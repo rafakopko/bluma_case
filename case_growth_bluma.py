@@ -83,7 +83,7 @@ Host: 95.111.240.159
 Port: 3306
 Database: bluma_case
 Username: candidato
-Password: bluma123
+Password: bluma321
         """)
     
     st.markdown("---")
@@ -422,7 +422,7 @@ with tab3:
         **🏠 Servidor:** 95.111.240.159  
         **🗄️ Banco:** bluma_case  
         **👤 Usuário:** candidato  
-        **🔑 Senha:** bluma123  
+        **🔑 Senha:** bluma321  
         **🚪 Porta:** 3306
         """)
     

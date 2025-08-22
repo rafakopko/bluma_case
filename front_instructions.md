@@ -39,7 +39,7 @@ Deve conter:
   Port: 3306
   Database: bluma_case
   Username: candidato
-  Password: bluma123
+  Password: bluma321
   ```
 
 #### Métricas-Alvo do Negócio
